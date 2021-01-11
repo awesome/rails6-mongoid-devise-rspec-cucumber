@@ -6,6 +6,10 @@ require File.expand_path('../config/environment', __dir__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
+require 'devise'
+require_relative 'factories_helper'
+require_relative 'support/controller_macros'
+
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -21,6 +25,7 @@ require 'rspec/rails'
 # require only the support files necessary.
 #
 # Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
+
 
 RSpec.configure do |config|
   # Remove this line to enable support for ActiveRecord
@@ -52,4 +57,16 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  config.include Devise::Test::ControllerHelpers, :type => :controller
+  config.include FactoryBot::Syntax::Methods
+  config.extend ControllerMacros, :type => :controller
+
+  # MongoDB;clean up the database
+  # see: https://rdoc.info/github/mongoid/mongoid/master/Mongoid/Config%3apurge!
+  #config.before(:each) {Mongoid.purge!}
+  # DatabaseCleaner Gem
+  config.before(:suite) {DatabaseCleaner.strategy = :truncation}
+  config.before(:each)  {DatabaseCleaner.start}
+  config.after(:each)   {DatabaseCleaner.clean}
 end
