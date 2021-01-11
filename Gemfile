@@ -28,7 +28,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '4.0.2'
   gem 'factory_bot_rails', '6.1.0'
-  gem 'database_cleaner', '1.8.5'
+  gem 'cucumber-rails', '2.2.0', require: false
+  gem 'database_cleaner-mongoid', '1.8.1'
 end
 
 group :development do
