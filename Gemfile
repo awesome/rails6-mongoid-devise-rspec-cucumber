@@ -30,6 +30,7 @@ group :development, :test do
   gem 'factory_bot_rails', '6.1.0'
   gem 'cucumber-rails', '2.2.0', require: false
   gem 'database_cleaner-mongoid', '1.8.1'
+  gem 'email_spec', '2.2.0'
 end
 
 group :development do
