@@ -1,24 +1,44 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe UsersController do
+RSpec.describe UsersController, type: :controller do
 
-  before (:each) do
-    @user = FactoryGirl.create(:user)
-    sign_in @user
+  context "user is logged in" do
+    login_user
+
+    describe "GET #index" do
+      it "returns a success response" do
+        get :index
+        expect(response).to be_successful
+      end
+    end
+
+    describe "GET #show" do
+      it "should be successful" do
+        get :show, params: {id: @user.id}
+        expect(response).to be_successful
+      end
+
+      it "should find the right user" do
+        get :show, params: {id: @user.id}
+        expect(assigns(:user)).to eq(@user)
+      end
+    end
   end
 
-  describe "GET 'show'" do
-    
-    it "should be successful" do
-      get :show, :id => @user.id
-      response.should be_success
+  context "user is vistor" do
+    describe "GET #index" do
+      it "returns a success response" do
+        get :index
+        expect(response).to redirect_to(new_user_session_path)
+      end
     end
-    
-    it "should find the right user" do
-      get :show, :id => @user.id
-      assigns(:user).should == @user
+
+    describe "GET #show" do
+      it "redirects to signin" do
+        get :show, params: {id: "1234"}
+        expect(response).to redirect_to(new_user_session_path)
+      end
     end
-    
   end
 
 end
