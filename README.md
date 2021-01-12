@@ -1,5 +1,9 @@
 # Rails6, Mongoid, Devise, RSpec & Cucumber
 
+[![awesome](https://circleci.com/gh/awesome/rails6-mongoid-devise-rspec-cucumber.svg?style=svg)](https://app.circleci.com/pipelines/github/awesome/rails6-mongoid-devise-rspec-cucumber)
+
+Example Rails 6 app with Mongoid, Devise, RSpec and Cucumber.
+
 
 ## Main Components
 
@@ -44,16 +48,16 @@
 
 ## TODO
 
+(for README)
+
 - [x] Ruby version
 - [ ] System dependencies
 - [ ] Configuration
-- [ ] Database creation
-- [ ] Database initialization
+- [ ] Devise modules
+- [ ] Database/Mongoid
 - [x] How to run the test suite
 - [ ] Services (job queues, cache servers, search engines, etc.)
 - [ ] Deployment instructions
-- [ ] Improve test coverage
-- [ ] Docs
 
 
 ## MIT License
