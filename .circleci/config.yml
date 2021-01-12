@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  ruby: circleci/ruby@0.1.2 
+  ruby: circleci/ruby@0.1.2
 
 jobs:
   build:
@@ -9,7 +9,25 @@ jobs:
     executor: ruby/default
     steps:
       - checkout
-      - run:
-          name: Which bundler?
-          command: bundle -v
       - ruby/bundle-install
+
+  test:
+    docker:
+      - image: circleci/ruby:2.7.1-node
+    executor: ruby/default
+    steps:
+      - checkout
+      - ruby/bundle-install
+      - run:
+          name: Cucumber Features
+          command: rake cucumber
+      - run:
+          name: RSpec Tests
+          command: rake spec
+
+
+workflows:
+  build_and_test:
+    jobs:
+      - build
+      - test
