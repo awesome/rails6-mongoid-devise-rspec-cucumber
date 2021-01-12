@@ -13,8 +13,8 @@ jobs:
       - ruby/bundle-install
 
       - run:
-        name: Yarn Install
-        command: yarn install --frozen-lockfile
+          name: Yarn Install
+          command: yarn install --frozen-lockfile
 
 
   cucumber:
@@ -27,8 +27,8 @@ jobs:
       - ruby/bundle-install
 
       - run:
-        name: Yarn Install
-        command: yarn install --frozen-lockfile
+          name: Yarn Install
+          command: yarn install --frozen-lockfile
 
       - run:
           name: Cucumber Features
@@ -51,8 +51,8 @@ jobs:
       - ruby/bundle-install
 
       - run:
-        name: Yarn Install
-        command: yarn install --frozen-lockfile
+          name: Yarn Install
+          command: yarn install --frozen-lockfile
 
       - run:
           name: RSpec Tests
