@@ -62,10 +62,20 @@ Build Info: {
 * run:  `rake spec`
 * help: `rake -T rspec`
 
+
 ### CircleCI
 
 * https://circleci.com/docs/2.0/circleci-images/#mongodb
 * https://circleci.com/developer/orbs/orb/circleci/ruby?version=0.1.0
+
+
+## Webpacker
+
+"""
+When compiling assets for production on a remote server, such as a continuous integration environment,
+it's recommended to use yarn install --frozen-lockfile to install NPM packages on the remote host
+to ensure that the installed packages match the yarn.lock file. -- https://github.com/rails/webpacker#deployment
+"""
 
 
 ## Credits
