@@ -4,7 +4,12 @@
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
 
+require 'bundler'
+Bundler.setup
+
 require 'cucumber/rails'
+require_relative Rails.root.join 'spec/factories_helper'
+require 'rspec/core'
 
 # frozen_string_literal: true
 
@@ -58,3 +63,14 @@ end
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
+
+# DEPRECATION: Using `should` from rspec-expectations' old `:should` syntax without
+# explicitly enabling the syntax is deprecated. Use the new `:expect` syntax or 
+# explicitly enable `:should` instead.
+RSpec.configure do |config|
+  config.expect_with :rspec do |c|
+    #c.syntax = :expect             # default, disables `should`
+    #c.syntax = :should             # depricated, disables `expect`
+    c.syntax = [:should, :expect]  # enables both `should` and `expect`
+  end
+end

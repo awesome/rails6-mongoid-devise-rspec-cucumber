@@ -18,6 +18,14 @@ RSpec.configure do |config|
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
   config.expect_with :rspec do |expectations|
+    # DEPRECATION: Using `should` from rspec-expectations' old `:should` syntax without
+    # explicitly enabling the syntax is deprecated. Use the new `:expect` syntax or 
+    # explicitly enable `:should` instead.
+    #
+    #expectations.syntax = :expect             # default, disables `should`
+    #expectations.syntax = :should             # depricated, disables `expect`
+    expectations.syntax = [:should, :expect]  # enables both `should` and `expect`
+
     # This option will default to `true` in RSpec 4. It makes the `description`
     # and `failure_message` of custom matchers include text for helper methods
     # defined using `chain`, e.g.:

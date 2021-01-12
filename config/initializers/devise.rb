@@ -183,7 +183,10 @@ Devise.setup do |config|
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly
   # to give user feedback and not to assert the e-mail validity.
-  config.email_regexp = /\A[^@\s]+@[^@\s]+\z/
+  #config.email_regexp = /\A[^@\s]+@[^@\s]+\z/
+  # "The Ruby standard library provides a regexp for email validation which is based on RFC6068."
+  # see: https://github.com/heartcombo/devise/issues/4986#issue-389268924
+  config.email_regexp = URI::MailTo::EMAIL_REGEXP
 
   # ==> Configuration for :timeoutable
   # The time you want to timeout the user session without activity. After this
@@ -268,6 +271,8 @@ Devise.setup do |config|
   # config.navigational_formats = ['*/*', :html]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
+  # see: https://github.com/plataformatec/devise/issues/431
+  # see: http://groups.google.com/group/plataformatec-devise/browse_thread/thread/99d466710a95a72/965df9eac3afab89?lnk=gst&q=DELETE#965df9eac3afab89
   config.sign_out_via = :delete
 
   # ==> OmniAuth
