@@ -6,19 +6,20 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.7.1-node
+      - image: circleci/mongo:4.4.3
     executor: ruby/default
     steps:
       - checkout
       - ruby/bundle-install
 
-  test:
+  cucumber:
     docker:
       - image: circleci/ruby:2.7.1-node
+      - image: circleci/mongo:4.4.3
     executor: ruby/default
     steps:
       - checkout
       - ruby/bundle-install
-
       - run:
           name: Cucumber Features
           command: |
@@ -30,6 +31,14 @@ jobs:
       - store_artifacts:
           path: ~/cucumber
 
+  rspec:
+    docker:
+      - image: circleci/ruby:2.7.1-node
+      - image: circleci/mongo:4.4.3
+    executor: ruby/default
+    steps:
+      - checkout
+      - ruby/bundle-install
       - run:
           name: RSpec Tests
           command: |
@@ -39,11 +48,9 @@ jobs:
       - store_test_results:
           path: ~/rspec
 
-
-
-
 workflows:
   build_and_test:
     jobs:
       - build
-      - test
+      - cucumber
+      - rspec
