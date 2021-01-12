@@ -33,6 +33,7 @@ group :development, :test do
   gem 'email_spec', '2.2.0'
   # assigns and assert_template have been extracted to a gem
   gem 'rails-controller-testing', '1.0.5'
+  gem 'rspec_junit_formatter'
 end
 
 group :development do

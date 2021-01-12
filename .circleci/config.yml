@@ -18,12 +18,28 @@ jobs:
     steps:
       - checkout
       - ruby/bundle-install
+
       - run:
           name: Cucumber Features
-          command: rake cucumber
+          command: |
+            mkdir -p ~/cucumber
+            bundle exec cucumber --format junit --out ~/cucumber/junit.xml
+          when: always
+      - store_test_results:
+          path: ~/cucumber
+      - store_artifacts:
+          path: ~/cucumber
+
       - run:
           name: RSpec Tests
-          command: rake spec
+          command: |
+            mkdir -p ~/rspec
+            bundle exec rspec --format progress --format RspecJunitFormatter -o ~/rspec/rspec.xml
+          when: always
+      - store_test_results:
+          path: ~/rspec
+
+
 
 
 workflows:
