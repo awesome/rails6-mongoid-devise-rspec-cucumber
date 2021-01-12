@@ -62,6 +62,11 @@ Build Info: {
 * run:  `rake spec`
 * help: `rake -T rspec`
 
+### CircleCI
+
+* https://circleci.com/docs/2.0/circleci-images/#mongodb
+* https://circleci.com/developer/orbs/orb/circleci/ruby?version=0.1.0
+
 
 ## Credits
 
