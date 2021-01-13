@@ -18,7 +18,29 @@ Example Rails 6 app with Mongoid, Devise, RSpec and Cucumber.
 
 ### Mongoid 7.0.11
 
-* works great!
+'''
+# macOS bigsur
+# 1) install
+$ brew tap mongodb/brew
+$ brew install mongodb-community
+
+# 2) start on background process
+$ brew services run mongodb-community
+
+# show version
+$ mongo --version
+MongoDB shell version v4.4.3
+Build Info: {
+    "version": "4.4.3",
+    "gitVersion": "913d6b62acfbb344dde1b116f4161360acd8fd13",
+    "modules": [],
+    "allocator": "system",
+    "environment": {
+        "distarch": "x86_64",
+        "target_arch": "x86_64"
+    }
+}
+'''
 
 ### Devise 4.7.3
 
@@ -39,6 +61,21 @@ Example Rails 6 app with Mongoid, Devise, RSpec and Cucumber.
 
 * run:  `rake spec`
 * help: `rake -T rspec`
+
+
+### CircleCI
+
+* https://circleci.com/docs/2.0/circleci-images/#mongodb
+* https://circleci.com/developer/orbs/orb/circleci/ruby?version=0.1.0
+
+
+## Webpacker
+
+"""
+When compiling assets for production on a remote server, such as a continuous integration environment,
+it's recommended to use yarn install --frozen-lockfile to install NPM packages on the remote host
+to ensure that the installed packages match the yarn.lock file. -- https://github.com/rails/webpacker#deployment
+"""
 
 
 ## Credits

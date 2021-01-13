@@ -6,18 +6,29 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.7.1-node
+      - image: circleci/mongo:4.4.3
     executor: ruby/default
     steps:
       - checkout
       - ruby/bundle-install
 
-  test:
+      - run:
+          name: Yarn Install
+          command: yarn install --frozen-lockfile
+
+
+  cucumber:
     docker:
       - image: circleci/ruby:2.7.1-node
+      - image: circleci/mongo:4.4.3
     executor: ruby/default
     steps:
       - checkout
       - ruby/bundle-install
+
+      - run:
+          name: Yarn Install
+          command: yarn install --frozen-lockfile
 
       - run:
           name: Cucumber Features
@@ -30,6 +41,19 @@ jobs:
       - store_artifacts:
           path: ~/cucumber
 
+  rspec:
+    docker:
+      - image: circleci/ruby:2.7.1-node
+      - image: circleci/mongo:4.4.3
+    executor: ruby/default
+    steps:
+      - checkout
+      - ruby/bundle-install
+
+      - run:
+          name: Yarn Install
+          command: yarn install --frozen-lockfile
+
       - run:
           name: RSpec Tests
           command: |
@@ -39,11 +63,9 @@ jobs:
       - store_test_results:
           path: ~/rspec
 
-
-
-
 workflows:
   build_and_test:
     jobs:
       - build
-      - test
+      - cucumber
+      - rspec
