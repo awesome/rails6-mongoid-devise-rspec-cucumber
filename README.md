@@ -18,7 +18,7 @@ Example Rails 6 app with Mongoid, Devise, RSpec and Cucumber.
 
 ### Mongoid 7.0.11
 
-'''
+```
 # macOS bigsur
 # 1) install
 $ brew tap mongodb/brew
@@ -40,7 +40,7 @@ Build Info: {
         "target_arch": "x86_64"
     }
 }
-'''
+```
 
 ### Devise 4.7.3
 
@@ -72,9 +72,9 @@ Build Info: {
 ## Webpacker
 
 """
-When compiling assets for production on a remote server, such as a continuous integration environment,
-it's recommended to use yarn install --frozen-lockfile to install NPM packages on the remote host
-to ensure that the installed packages match the yarn.lock file. -- https://github.com/rails/webpacker#deployment
+> When compiling assets for production on a remote server, such as a continuous integration environment,
+> it's recommended to use `yarn install --frozen-lockfile` to install NPM packages on the remote host
+> to ensure that the installed packages match the yarn.lock file. -- https://github.com/rails/webpacker#deployment
 """
 
 
